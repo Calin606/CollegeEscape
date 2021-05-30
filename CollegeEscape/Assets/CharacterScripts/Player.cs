@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public GameObject inv;
     public GameObject equip;
 
+    private bool rend = false;
+
 
     //give values
     private void Start(){
@@ -153,6 +155,12 @@ public class Player : MonoBehaviour
     }
 
     private void Update(){
+
+        if(rend == false){
+            equipment.Load();
+            rend = true;
+        }
+
         if(Input.GetKeyDown(KeyCode.Tab)){
             inventory.Save();
             equipment.Save();
@@ -161,14 +169,6 @@ public class Player : MonoBehaviour
             inventory.Load();
             equipment.Load();
         }
-        /*if(Input.GetKeyDown(KeyCode.I)){
-            inv.SetActive(true);
-            equip.SetActive(true);
-        }
-        if(Input.GetKeyUp(KeyCode.I)){
-            inv.SetActive(false);
-            equip.SetActive(false);
-        }*/
     }
 
     public void AttributeModified(Attribute attribute){
